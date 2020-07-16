@@ -8,15 +8,12 @@ class SensorLecturaController {
     async create({request, response}){
 
 
-        try {
+        
 
-            let { temperatura, humedad  } = await request.all();
+            const { sensor_id ,temperatura, humedad  } = await request.all();
             const sensorLectura = new SensorLectura();
 
-            let sensor_id = await Sensor.find(sensor_id)
-
-            if(sensor_id != null){
-
+        
 
                 sensorLectura.fill({
                     sensor_id,
@@ -29,18 +26,8 @@ class SensorLecturaController {
         
                 await sensorLectura.save()
                 return sensorLectura;
-    
-    
-                
 
-            }
-           
-            
-        } catch (error) {
-
-            return response.json('No existe ese sensor')
-            
-        }
+        
        
     }
 
