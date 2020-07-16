@@ -21,7 +21,7 @@ Route.group(() => {
   Route.post('login' , 'UserController.login')
   Route.post('register' , 'UserController.register')
   Route.get('index', 'UserController.index')
-  
+
 
 }).prefix('users')
 
@@ -41,6 +41,9 @@ Route.group(() => {
 Route.group(() => {
 
   Route.post('create' , 'SensorLecturaController.create').middleware(['auth'])
-  
+
 
 }).prefix('lecturas')
+
+// temporal route
+Route.post('sensores/lecturas/register','SensorController.registerLecturas')

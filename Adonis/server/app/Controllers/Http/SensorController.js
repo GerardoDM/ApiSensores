@@ -76,6 +76,67 @@ class SensorController {
         return response.json(sensors)
       }
 
+    async registerLecturas({request,response}){
+
+      const request_data = await request.all()
+      const sensor_id = request_data.sensor_id
+
+      // if is needed to temporarily clear all arrays' data uncomment this procedure
+      // when you are done, comment it again
+      // this procedure would be set on another method or deleted
+      /*return await SensorMongo.update(
+        {sensor_id:sensor_id},
+        {$set:{
+            "lecturas_dht":Schema.Types.Array,
+            "promedio_lecturas":Schema.Types.Array
+          }
+        }
+      )*/
+
+      const lecturas_length = request_data.lecturas.length
+      const _object_id = new mongoose.Types.ObjectId()
+
+      let _object = {
+        _id: _object_id,
+        lecturas:[]
+      }
+
+      let sumatoriaTemperatura = 0
+      let sumatoriaHumedad = 0
+
+      for(let i=0;i<lecturas_length;i++){
+
+        const humedad = request_data.lecturas[i].humedad
+        const temperatura = request_data.lecturas[i].temperatura
+
+        _object.lecturas.push({
+          _id: new mongoose.Types.ObjectId(),
+          temperatura: temperatura,
+          humedad: humedad
+        })
+
+        sumatoriaTemperatura += temperatura
+        sumatoriaHumedad += humedad
+
+      }
+
+      let promedio_lecturas = {
+        _id: new mongoose.Types.ObjectId(),
+        lecturas_dht_id:_object_id,
+        temperatura: sumatoriaTemperatura/lecturas_length,
+        humedad: sumatoriaHumedad/lecturas_length
+      }
+
+      return await SensorMongo.update(
+        {sensor_id:sensor_id},
+        {$push:{
+            lecturas_dht:_object,
+            promedio_lecturas: promedio_lecturas
+          }
+        }
+      )
+
+    }
 
 }
 
