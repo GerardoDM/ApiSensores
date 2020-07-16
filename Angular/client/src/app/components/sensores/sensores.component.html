@@ -1,1 +1,52 @@
-<p>sensores works!</p>
+<div>
+    <form #myForm="ngForm" (ngSubmit)="myForm.reset()" style="width: 600px;" class="mt-4 ml-4 mr-4 mb-4">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre" [(ngModel)]="datos.nombre">
+          
+        </div>
+        <div class="form-group">
+            <label>Ubicacion</label>
+            <input type="text" class="form-control"  name="raza" placeholder="Ingrese ubicacion" [(ngModel)]="datos.ubicacion">
+           
+          </div>
+         
+
+        
+       
+        <button id="btnSubmit" type="submit" (click)="create()" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary ml-2" 
+              [hidden]="!inboundClick" 
+              (click)="inboundClick = !inboundClick; update()" 
+                  
+                  >Edit</button>
+    
+      </form>
+
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>  
+            <th scope="col">Nombre</th>
+            <th scope="col">Ubicacion</th>
+            
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sensor of sensoresList">
+            <td>{{sensor.id}}</td>
+            <td>{{sensor.nombre}}</td>
+            <td>{{sensor.ubicacion}}</td>
+            
+            <td>
+                <button type="submit" (click)="delete(sensor)" class="btn btn-danger">Delete</button>
+                <button type="submit" (click)="edit(sensor); makeVisible()" class="btn btn-secondary">Edit</button>
+            
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+   
+</div>
