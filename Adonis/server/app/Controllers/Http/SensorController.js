@@ -138,6 +138,14 @@ class SensorController {
 
     }
 
+    async getLecturas({params,response}){
+
+      const {sensor_id} = params ;
+
+      return await SensorMongo.findOne({sensor_id:sensor_id});
+
+    }
+
 }
 
 module.exports = SensorController

@@ -47,3 +47,5 @@ Route.group(() => {
 
 // temporal route
 Route.post('sensores/lecturas/register','SensorController.registerLecturas')
+
+Route.get('sensores/lecturas/get/:sensor_id','SensorController.getLecturas')
