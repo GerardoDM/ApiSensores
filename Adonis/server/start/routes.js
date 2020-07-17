@@ -29,7 +29,7 @@ Route.group(() => {
 //Sensores
 Route.group(() => {
 
-  Route.post('create' , 'SensorController.create').middleware(['auth'])
+  Route.post('create' , 'SensorController.create')
   Route.delete('delete/:id', 'SensorController.destroy').middleware(['auth'])
   Route.patch('update/:id', 'SensorController.update').middleware(['auth'])
   Route.get('index', 'SensorController.index').middleware(['auth'])

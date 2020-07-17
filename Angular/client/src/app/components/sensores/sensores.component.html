@@ -31,6 +31,7 @@
             <th scope="col">Ubicacion</th>
             
             <th scope="col">Accion</th>
+            <th scope="col">Ver</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@
                 <button type="submit" (click)="edit(sensor); makeVisible()" class="btn btn-secondary">Edit</button>
             
             </td>
+            <td><button type="submit"  (click)="onSelect(sensor)" class="btn btn-success" routerLink="/lecturas" href="/lecturas">Lecturas</button>
           </tr>
           
         </tbody>

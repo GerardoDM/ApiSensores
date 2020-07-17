@@ -14,12 +14,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { RouterModule, Routes } from '@angular/router';
+import { LecturasComponent } from './components/lecturas/lecturas.component';
+import { LecturasService } from './services/lecturas.service';
 
 
 const routes:Routes = [
   {path: 'sensores', component: SensoresComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},]
+  {path: 'login', component: LoginComponent},
+  {path: "lecturas/:id/:nombre", component: LecturasComponent},]
 
 
 @NgModule({
@@ -27,7 +30,8 @@ const routes:Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    SensoresComponent
+    SensoresComponent,
+    LecturasComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,7 @@ const routes:Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, GuardService, SensoresService, JwtHelperService, {
+  providers: [AuthService, GuardService, LecturasService, SensoresService, JwtHelperService, {
     provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true

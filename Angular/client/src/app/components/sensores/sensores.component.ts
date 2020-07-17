@@ -98,5 +98,9 @@ export class SensoresComponent implements OnInit {
       document.getElementById("btnSubmit").setAttribute("disabled", "disabled")
     }
 
+    onSelect(datos : Sensor){
+      this.router.navigate(['lecturas', datos.id, datos.nombre])
+    }
+
 
 }
