@@ -76,22 +76,24 @@ class SensorController {
         return response.json(sensors)
       }
 
-    async registerLecturas({request,response}){
+    async registerLecturas({request}){
 
       const request_data = await request.all()
-      const sensor_id = request_data.sensor_id
+      const sensor_id = parseInt(request_data.sensor_id)
 
       // if is needed to temporarily clear all arrays' data uncomment this procedure
       // when you are done, comment it again
       // this procedure would be set on another method or deleted
-      /*return await SensorMongo.update(
+/*
+      return await SensorMongo.update(
         {sensor_id:sensor_id},
         {$set:{
             "lecturas_dht":Schema.Types.Array,
             "promedio_lecturas":Schema.Types.Array
           }
         }
-      )*/
+      )
+*/
 
       const lecturas_length = request_data.lecturas.length
       const _object_id = new mongoose.Types.ObjectId()
@@ -122,8 +124,8 @@ class SensorController {
           _id: new mongoose.Types.ObjectId(),
           hora_registro:hora_registro,
           fecha_registro:fecha_registro,
-          temperatura: temperatura,
-          humedad: humedad
+          temperatura: parseFloat(temperatura),
+          humedad: parseFloat(humedad)
         })
 
         sumatoriaTemperatura += temperatura

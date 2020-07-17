@@ -45,10 +45,6 @@ Route.group(() => {
 
 }).prefix('lecturas')
 
-// temporal route
-Route.post('sensores/lecturas/register','SensorController.registerLecturas')
-
-Route.get('sensores/lecturas/get/:sensor_id','SensorController.getLecturas')
-
-// python test
-Route.post('test','SensorController.test')
+// MongoDB sensores routes
+Route.post('sensores/lecturas/register','SensorController.registerLecturas').middleware(['auth'])
+Route.get('sensores/lecturas/get/:sensor_id','SensorController.getLecturas').middleware(['auth'])
