@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lectura, LecturasService } from 'src/app/services/lecturas.service';
+import { Lectura, LecturasService, objeto_promedio_lecturas, objeto_lectura } from 'src/app/services/lecturas.service';
 import { SensoresService, Sensor } from 'src/app/services/sensores.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {map} from 'rxjs/operators'
@@ -24,6 +24,24 @@ export class LecturasComponent implements OnInit {
     id: ""
     
     
+}
+
+ datosobjetolectura : objeto_lectura = {
+
+  _id : "",
+	hora_registro: null,
+	fecha_registro: null,
+	lecturas: null
+}
+
+datospromlectura : objeto_promedio_lecturas = {
+
+  _id : "",
+	lecturas_dht_id : "",
+	hora_registro : null,
+	fecha_registro : null,
+	temperatura : null,
+	humedad : null
 }
 
     datosSensor: Sensor = {
@@ -54,14 +72,30 @@ export class LecturasComponent implements OnInit {
 
     this.Slectura.showLecturas(this.datosSensor.id)
     .subscribe(data => {
-      //@ts-ignore
+
+      console.log(data.lecturas_dht[0].lecturas)
+      console.log(data.lecturas_dht[0].hora_registro)
+      console.log(data.lecturas_dht[0].fecha_registro)
+
       const res = data.lecturas_dht[0].lecturas
-      //@ts-ignore
       const foo = data.lecturas_dht[0]._id
-      console.log(res);
+      const bar = data.lecturas_dht[0].hora_registro
+      const foobar = data.lecturas_dht[0].fecha_registro
+
       this.lecturasList = res
-      //@ts-ignore
-      this.id = foo 
+      this.id = foo
+      this.hora_registro = bar
+      this.fecha_registro = foobar
+     
+     
+      // //@ts-ignore
+      // const res = data.lecturas_dht[0].lecturas
+      // //@ts-ignore
+      // const foo = data.lecturas_dht[0]._id
+      // console.log(res);
+      // this.lecturasList = res
+      // //@ts-ignore
+      // this.id = foo 
      
     })
   
