@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lectura, LecturasService, objeto_promedio_lecturas, objeto_lectura } from 'src/app/services/lecturas.service';
+import { Lectura, LecturasService, objeto_promedio_lecturas, objeto_lectura, lecturas } from 'src/app/services/lecturas.service';
 import { SensoresService, Sensor } from 'src/app/services/sensores.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {map} from 'rxjs/operators'
@@ -15,44 +15,57 @@ export class LecturasComponent implements OnInit {
 
 
   datos: Lectura = {
-    _id: "",
-    temperatura: null,
-    humedad: null,
+   // _id: "",
+    //temperatura: null,
+    //humedad: null,
     lecturas_dht : null,
     promedio_lecturas: null,
     lecturas : null,
-    id: ""
+    //id: ""
     
     
-}
+  }
+
+  datoslecturas : lecturas = {
+
+    _id: "",
+    temperatura: null,
+    humedad: null,
+    fecha_registro : null,
+    hora_registro : null
+
+  }
 
  datosobjetolectura : objeto_lectura = {
 
-  _id : "",
-	hora_registro: null,
-	fecha_registro: null,
-	lecturas: null
-}
+    _id : "",
+    hora_registro: null,
+    fecha_registro: null,
+    lecturas: null
+  
+  }
 
-datospromlectura : objeto_promedio_lecturas = {
+  datospromlectura : objeto_promedio_lecturas = {
 
-  _id : "",
-	lecturas_dht_id : "",
-	hora_registro : null,
-	fecha_registro : null,
-	temperatura : null,
-	humedad : null
-}
+    _id : "",
+    lecturas_dht_id : "",
+    hora_registro : null,
+    fecha_registro : null,
+    temperatura : null,
+    humedad : null
+    
+  }
 
-    datosSensor: Sensor = {
+  datosSensor: Sensor = {
       id: null,
       nombre: "",
       ubicacion: "",
       editMode: false
-    }
+  }
 
-    lecturasList : Lectura[]
+    lecturasList : lecturas[]
     sensoressList : Sensor[]
+    dhtList : objeto_lectura[]
 
   constructor(private Slectura: LecturasService, private sensores: SensoresService, private route : ActivatedRoute, private router: Router) { }
 
@@ -73,19 +86,40 @@ datospromlectura : objeto_promedio_lecturas = {
     this.Slectura.showLecturas(this.datosSensor.id)
     .subscribe(data => {
 
-      console.log(data.lecturas_dht[0].lecturas)
+      //@ts-ignore.
+      console.log(data.lecturas_dht)
+
+      //@ts-ignore.
+      //console.log(data.lecturas_dht[0].lecturas)
+      //@ts-ignore.
       console.log(data.lecturas_dht[0].hora_registro)
+      //@ts-ignore.
       console.log(data.lecturas_dht[0].fecha_registro)
 
-      const res = data.lecturas_dht[0].lecturas
+      //@ts-ignore.
+      const baz = data.lecturas_dht
+      //@ts-ignore.
+      const res = data.lecturas_dht[3].lecturas
+      //@ts-ignore.
       const foo = data.lecturas_dht[0]._id
+      //@ts-ignore.
       const bar = data.lecturas_dht[0].hora_registro
+      //@ts-ignore.
       const foobar = data.lecturas_dht[0].fecha_registro
 
       this.lecturasList = res
-      this.id = foo
-      this.hora_registro = bar
-      this.fecha_registro = foobar
+
+      
+      //@ts-ignore.
+      
+
+
+
+      this.datosobjetolectura._id = foo
+      this.datosobjetolectura.hora_registro = bar
+      this.datosobjetolectura.fecha_registro = foobar
+      this.dhtList = baz
+    
      
      
       // //@ts-ignore
@@ -104,25 +138,21 @@ datospromlectura : objeto_promedio_lecturas = {
   } 
 
 
-  showWeapons(): void{
-    this.Slectura.showLecturas(this.datosSensor.id).subscribe(lecturasList => ( this.lecturasList = lecturasList))
+  // showWeapons(): void{
+  //   this.Slectura.showLecturas(this.datosSensor.id).subscribe(lecturasList => ( this.lecturasList = lecturasList))
     
 
-  }
+  // }
 
-  mostrarTabla(){
+  // mostrarTabla(){
     
-    var x = document.getElementById("tabla");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
+  //   var x = document.getElementById("tabla");
+  //   if (x.style.display === "none") {
+  //     x.style.display = "block";
+  //   } else {
+  //     x.style.display = "none";
+  //   } 
 
-      
-    
-
-
-  }
+  // }
 
 }
