@@ -6,15 +6,34 @@ import { environment } from 'src/environments/environment';
 
 
 export interface Lectura {
+  
   _id: String
   temperatura: number
   humedad: number
-  lecturas_dht: Object
-  promedio_lecturas : object
+  lecturas_dht: Array<objeto_lectura>
+  promedio_lecturas : Array<objeto_promedio_lecturas>
   lecturas: Array<object>
   id : String
   
   
+}
+
+export interface objeto_lectura {
+
+  _id : String,
+	hora_registro: number
+	fecha_registro: number
+	lecturas: Array<object>
+}
+
+export interface objeto_promedio_lecturas {
+
+  _id : string,
+	lecturas_dht_id : string,
+	hora_registro : number,
+	fecha_registro : number,
+	temperatura : number,
+	humedad : number
 }
 
 
