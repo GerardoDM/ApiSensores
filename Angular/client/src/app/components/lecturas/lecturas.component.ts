@@ -87,7 +87,32 @@ export class LecturasComponent implements OnInit {
     .subscribe(data => {
 
       //@ts-ignore.
-      console.log(data.lecturas_dht)
+      //console.log(data.lecturas_dht[0].lecturas[0]._id)
+
+       //@ts-ignore.
+       console.log(data)
+    
+
+    //7  const i = 0
+       //@ts-ignore.
+       //data.lecturas_dht[i].lecturas.forEach(e => {
+
+         //@ts-ignore.
+        //console.log(data.lecturas_dht[i].lecturas[i]._id)
+      
+      //})
+
+      let i = 0
+       //@ts-ignore.
+      for(i; i < 4 ; i++){
+
+           //@ts-ignore.
+          console.log(data.lecturas_dht[i].lecturas[i]._id)
+      }
+
+     
+
+     // console.log(this.lecturasList)
 
       //@ts-ignore.
       //console.log(data.lecturas_dht[0].lecturas)
@@ -107,7 +132,7 @@ export class LecturasComponent implements OnInit {
       //@ts-ignore.
       const foobar = data.lecturas_dht[0].fecha_registro
 
-      this.lecturasList = res
+      //this.lecturasList = res
 
       
       //@ts-ignore.

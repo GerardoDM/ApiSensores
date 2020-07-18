@@ -109,10 +109,10 @@ export class AuthService {
         
     }
 
-    public getUser(id): Observable<any>{
+  //   public getUser(id): Observable<any>{
 
-      return this.http.get(`users/show/${id}`)
-  }
+  //     return this.http.get(`users/show/${id}`)
+  // }
 
     
 }

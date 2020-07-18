@@ -17,16 +17,16 @@ export class AppComponent {
   constructor(public auth: AuthService){}
 
   ngOnInit(): void {
-    const current = this.auth.getDetalles()
-    this.auth.getUser(current.id).subscribe(
-      user => {
-        this.detalles = user
+    // const current = this.auth.getDetalles()
+    // this.auth.getUser(current.id).subscribe(
+    //   user => {
+    //     this.detalles = user
 
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    //   },
+    //   err => {
+        
+    //   }
+    // )
 
 
   }
