@@ -1,13 +1,12 @@
-<div>  
+<div>
 
     <div class="jumbotron">
-        <h1 class="display-4">{{datosSensor.nombre}}</h1>
-        
+        <h1 class="display-4">{{sensor.nombre}}</h1>
 
-      
+
+
     </div>
-
-<div *ngFor="let lecturas of dhtList">
+<div *ngFor="let lecturas of objetoLectura.lecturas_dht">
       <div>
             <button id="btnMostrar"   class="btn btn-success btn-lg btn-block">{{lecturas._id}}   | Hora de registro : {{lecturas.fecha_registro}} | Fecha de registro : {{lecturas.hora_registro}} | Ver lecturas : <span><svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -15,28 +14,29 @@
                 <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"/>
               </svg></span></button>
       </div>
-  
+
       <div id="tabla" style=" overflow-y: scroll" class="mt-4">
       <table class="table table-hover table-dark">
         <thead>
           <tr>
-            <th scope="col">ID</th>  
+            <th scope="col">ID</th>
             <th scope="col">Temperatura</th>
             <th scope="col">Humedad</th>
             <th score="col">Hora de registro</th>
             <th scope="col">Fecha de registro</th>
-           
+
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let lectura of lecturasList">
-            <td>{{lectura._id}}</td>
-            <td>{{lectura.temperatura}}</td>
-            <td>{{lectura.humedad}}</td>
-            <td>{{lectura.hora_registro}}</td>
-            <td>{{lectura.fecha_registro}}</td>
-          </tr>
-          
+
+        <tr *ngFor="let _item of lecturas.lecturas">
+          <td>{{_item._id}}</td>
+          <td>{{_item.temperatura}}</td>
+          <td>{{_item.humedad}}</td>
+          <td>{{_item.hora_registro}}</td>
+          <td>{{_item.fecha_registro}}</td>
+        </tr>
+
         </tbody>
       </table>
     </div>

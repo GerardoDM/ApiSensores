@@ -3,15 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
-
-
-export interface Sensor {
-  id: number
-  nombre: string
-  ubicacion: string
-  editMode : Boolean
-}
+import {Sensor} from "../interfaces/sensor";
 
 @Injectable()
 export class SensoresService {
@@ -28,16 +20,16 @@ export class SensoresService {
     return this.http.post(url, sensor)
   }
 
-  
+
 
     public getSensores(): Observable<Sensor[]>{
       let url = `${this.baseUrl}/sensores/index`;
      // let url = `${this.env.apiUrl}/personajes/index`
 
-      
+
 
       return this.http.get<Sensor[]>(url)
-      
+
     }
 
     public delete(id: number): Observable<{}>{
