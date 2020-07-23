@@ -52,11 +52,31 @@ export class LecturasComponent implements OnInit {
     .subscribe(data => {
       this.objetoLectura = data;
       console.log(this.objetoLectura);
+      console.log(data.promedio_lecturas)
 
     });
 
 
 
   }
+
+   showPromedios() {
+    var x = document.getElementById("tablaPromedios");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  showLecturas() {
+    var x = document.getElementById("tablaLecturas");
+    if (x.style.display === "none") {
+      x.style.display = "initial";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
 
 }
